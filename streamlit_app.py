@@ -23,7 +23,7 @@ image_path = "littleaibites.png"  # Replace with the actual path
 
 def auth_flow():
 
-    #st.write("Fully Qualified Domain Name:", hostname, fqdn, redirect_uri)
+    st.write("Fully Qualified Domain Name:", hostname, fqdn, redirect_uri)
     auth_code = st.query_params.get("code")
     flow = google_auth_oauthlib.flow.Flow.from_client_secrets_file(
         "littleaibites_secret.json", # replace with you json credentials from your google auth app
