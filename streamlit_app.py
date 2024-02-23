@@ -10,7 +10,7 @@ import streamlit as st
 import webbrowser
 
 
-redirect_uri = os.environ.get("REDIRECT_URI", "http://localhost:8501/")
+redirect_uri = os.environ.get("REDIRECT_URI", "https://littleaibites-smyg87hdmugauhmn5t9yjq.streamlit.app/")
 
 
 def auth_flow():
