@@ -49,9 +49,9 @@ class GoogleAuth:
         else:
 
             flow = google_auth_oauthlib.flow.Flow.from_client_config(
-                client_config=self.client_config
+                client_config=self.client_config,
                 scopes=["https://www.googleapis.com/auth/userinfo.email", "openid"],
-                redirect_uri=self.redirect_uri,
+                redirect_uri=self.redirect_uri
             )
 
         if auth_code:
