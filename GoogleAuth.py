@@ -6,6 +6,7 @@ from googleapiclient.discovery import build
 import streamlit as st
 import webbrowser
 import streamlit as st
+from streamlit.components.v1 import html
 
 class GoogleAuth:
     """
@@ -36,6 +37,11 @@ class GoogleAuth:
             self.redirect_uri = "https://obscure-sniffle-x5x67wq5663vqrp-8501.app.github.dev/"
 
         print('OS PATH',self.current_path)
+
+
+    def open_page(url):
+        open_script= """<script type="text/javascript">window.open('%s', '_blank').focus();</script>""" % (url)
+        html(open_script)
 
     def auth_flow(self):
         auth_code = st.query_params.get("code")
@@ -71,8 +77,9 @@ class GoogleAuth:
         else:
             st.image(self.image_path, width=300)
             if st.button("Sign in with Google"):
-                authorization_url, state = flow.authorization_url(
-                    access_type="offline",
-                    include_granted_scopes="true",
-                )
-                webbrowser.open_new_tab(authorization_url)
+                authorization_url, state = flow.authorization_url(access_type="offline",include_granted_scopes="true",)
+                self.open_page(authorization_url)
+                #webbrowser.open_new_tab(authorization_url)
+
+
+# https://discuss.streamlit.io/t/how-to-link-a-button-to-a-webpage/1661/7
