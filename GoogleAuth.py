@@ -20,6 +20,7 @@ class GoogleAuth:
         self.client_id = st.secrets.google_auth['client_id']
         self.client_secret = st.secrets.google_auth['client_secret_key']
         self.secret_file = st.secrets.google_auth['secret_file_path']
+        self.config = st.secrets['config']
         self.redirect_uri = "https://littleaibites-smyg87hdmugauhmn5t9yjq.streamlit.app/"
 
         if os.path.isfile(self.secret_file):
@@ -38,11 +39,20 @@ class GoogleAuth:
     def auth_flow(self):
         auth_code = st.query_params.get("code")
 
-        flow = google_auth_oauthlib.flow.Flow.from_client_secrets_file(
-            self.secret_file,
-            scopes=["https://www.googleapis.com/auth/userinfo.email", "openid"],
-            redirect_uri=self.redirect_uri,
-        )
+
+        if os.path.isfile(self.secret_file):
+            flow = google_auth_oauthlib.flow.Flow.from_client_secrets_file(
+                self.secret_file,
+                scopes=["https://www.googleapis.com/auth/userinfo.email", "openid"],
+                redirect_uri=self.redirect_uri,
+            )
+        else:
+
+            flow = google_auth_oauthlib.flow.Flow.from_client_config(
+                client_config=self.client_config
+                scopes=["https://www.googleapis.com/auth/userinfo.email", "openid"],
+                redirect_uri=self.redirect_uri,
+            )
 
         if auth_code:
             flow.fetch_token(code=auth_code)
