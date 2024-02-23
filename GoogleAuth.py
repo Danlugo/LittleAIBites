@@ -20,7 +20,7 @@ class GoogleAuth:
         self.client_id = st.secrets.google_auth['client_id']
         self.client_secret = st.secrets.google_auth['client_secret_key']
         self.secret_file = st.secrets.google_auth['secret_file_path']
-        self.config = st.secrets['config']
+        self.client_config = st.secrets['config']
         self.redirect_uri = "https://littleaibites-smyg87hdmugauhmn5t9yjq.streamlit.app/"
 
         if os.path.isfile(self.secret_file):
