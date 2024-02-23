@@ -39,7 +39,7 @@ class GoogleAuth:
         print('OS PATH',self.current_path)
 
 
-    def open_page(url):
+    def open_page(self, url):
         open_script= """<script type="text/javascript">window.open('%s', '_blank').focus();</script>""" % (url)
         html(open_script)
 
@@ -76,10 +76,20 @@ class GoogleAuth:
             
         else:
             st.image(self.image_path, width=300)
+            authorization_url, state = flow.authorization_url(access_type="offline",include_granted_scopes="true",)
+            print('DEBUG Authorization url=',authorization_url, ' State=', state)
+            st.button("Sign in with Google", on_click=self.open_page(authorization_url))
+
+
+            
+"""
+        else:
+            st.image(self.image_path, width=300)
             if st.button("Sign in with Google"):
-                authorization_url, state = flow.authorization_url(access_type="offline",include_granted_scopes="true",)
-                self.open_page(authorization_url)
-                #webbrowser.open_new_tab(authorization_url)
-
-
+                authorization_url, state = flow.authorization_url(
+                    access_type="offline",
+                    include_granted_scopes="true",
+                )
+                webbrowser.open_new_tab(authorization_url)
 # https://discuss.streamlit.io/t/how-to-link-a-button-to-a-webpage/1661/7
+"""
