@@ -18,3 +18,9 @@ load_dotenv()
 search_tool = DuckDuckGoSearchRun()
 
 default_llm=llm=ChatOpenAI(model_name="gpt-3.5-turbo", temperature=0.7) #Ollama(model="mistral")
+
+
+# https://discuss.streamlit.io/t/google-authentication-in-a-streamlit-app/43252/18
+# pip install google-auth
+# pip install google-auth-oauthlib
+# pip install google-api-python-client

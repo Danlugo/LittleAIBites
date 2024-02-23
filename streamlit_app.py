@@ -1,16 +1,12 @@
-# https://discuss.streamlit.io/t/google-authentication-in-a-streamlit-app/43252/18
-# pip install google-auth
-# pip install google-auth-oauthlib
-# pip install google-api-python-client
-import os
 
+import os
 import google_auth_oauthlib.flow
 from googleapiclient.discovery import build
 import streamlit as st
 import webbrowser
 
 
-redirect_uri = os.environ.get("REDIRECT_URI", "https://littleaibites-smyg87hdmugauhmn5t9yjq.streamlit.app/")
+redirect_uri = os.environ.get("REDIRECT_URI", "https://littleaibites-mphvpdpjnzs3srv6sqxx7q.streamlit.app/")
 
 
 def auth_flow():
