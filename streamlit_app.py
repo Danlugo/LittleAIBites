@@ -12,6 +12,7 @@ fqdn = socket.getfqdn()
 hostname = socket.gethostname()
 image_path = st.secrets.logo
 openai_key = st.secrets.openai['key']
+developer = st.secrets.email
 
 
 def main():
@@ -28,7 +29,9 @@ def main():
 
         with st.sidebar:
             st.image(image_path)
-            openai_api_key = st.text_input("OpenAI API Key", key=openai_key, placeholder=openai_key, type="password")
+            openai_api_key = st.text_input("OpenAI API Key", key=openai_key, type="password")
+            if developer in email:
+                openai_api_key = openai_key
 
         st.title("💬 Chatbot")
         st.caption("🚀 A streamlit chatbot powered by OpenAI LLM")

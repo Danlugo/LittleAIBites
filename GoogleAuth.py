@@ -1,3 +1,4 @@
+import os
 import socket
 import google_auth_oauthlib.flow
 from googleapiclient.discovery import build
@@ -15,19 +16,30 @@ class GoogleAuth:
         self.image_path = st.secrets.logo
         self.fqdn = socket.getfqdn()
         self.hostname = socket.gethostname()
+        self.current_path = os.getcwd()
         self.client_id = st.secrets.google_auth['client_id']
         self.client_secret = st.secrets.google_auth['client_secret_key']
+        self.secret_file = st.secrets.google_auth['secret_file_path']
         self.redirect_uri = "https://littleaibites-smyg87hdmugauhmn5t9yjq.streamlit.app/"
+
+        if os.path.isfile(self.secret_file):
+            print('Found File', self.secret_file)
+            with open (self.secret_file, 'r') as f:
+                f.readline()
+                print(f.readline())
+        else:
+            print('Didnt find File', self.secret_file)
 
         if 'codespaces' in self.hostname:
             self.redirect_uri = "https://obscure-sniffle-x5x67wq5663vqrp-8501.app.github.dev/"
 
+        print('OS PATH',self.current_path)
 
     def auth_flow(self):
         auth_code = st.query_params.get("code")
 
         flow = google_auth_oauthlib.flow.Flow.from_client_secrets_file(
-            "/workspaces/littleaibites/.streamlit/secret.json",
+            self.secret_file,
             scopes=["https://www.googleapis.com/auth/userinfo.email", "openid"],
             redirect_uri=self.redirect_uri,
         )
