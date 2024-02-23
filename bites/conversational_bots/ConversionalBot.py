@@ -7,7 +7,7 @@ from langchain_community.tools import DuckDuckGoSearchRun
 import json
 
 
-class ConversationBot:
+class ConversationalBot:
     """ 
     created on 2024-02-22 - v0.1 - dgonzalez - initial structure for crewai to read file for instructions
     """
@@ -75,7 +75,7 @@ class ConversationBot:
 
 
 if __name__ == "__main__":
-    c = ConversationBot('job_LLS_Technical_Education.json')
+    c = ConversationalBot('job_LLS_Technical_Education.json')
     c.printify()
     j = c.run()
     print('\nRESULTS:\n',j)

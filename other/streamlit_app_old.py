@@ -1,34 +1,37 @@
 
-# https://pypi.org/project/StreamlitGAuth/2.0.9/
-# https://docs.streamlit.io/streamlit-community-cloud/deploy-your-app/secrets-management
-import socket
+import os
+import google_auth_oauthlib.flow
+from googleapiclient.discovery import build
 import streamlit as st
+import webbrowser
 from openai import OpenAI
-from GoogleAuth import GoogleAuth
+from dotenv import load_dotenv
+import socket
 
 
-# configuration
+load_dotenv()
+OpenAI_key = os.environ.get("OPEN_AI_KEY")
+
 fqdn = socket.getfqdn()
 hostname = socket.gethostname()
-image_path = st.secrets.logo
-openai_key = st.secrets.openai['key']
 
+redirect_uri = os.environ.get("REDIRECT_URI", "https://littleaibites-smyg87hdmugauhmn5t9yjq.streamlit.app/")
+if 'codespaces' in hostname:
+    redirect_uri = os.environ.get("REDIRECT_URI", "https://obscure-sniffle-x5x67wq5663vqrp-8501.app.github.dev/")
+
+image_path = "littleaibites.png"  # Replace with the actual path
 
 def main():
-    st.set_page_config(layout='wide')
-
-    g = GoogleAuth()
-
     if "google_auth_code" not in st.session_state:
-        g.auth_flow()
-        
+        auth_flow()
+
     if "google_auth_code" in st.session_state:
         email = st.session_state["user_info"].get("email")
         st.write(f"Hello {email}")
 
         with st.sidebar:
             st.image(image_path)
-            openai_api_key = st.text_input("OpenAI API Key", key=openai_key, placeholder=openai_key, type="password")
+            openai_api_key = st.text_input("OpenAI API Key", key=OpenAI_key, type="password")
 
         st.title("💬 Chatbot")
         st.caption("🚀 A streamlit chatbot powered by OpenAI LLM")
