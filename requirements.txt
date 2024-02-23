@@ -1,6 +1,6 @@
+openai
 cohere
 tiktoken
-openai
 crewai
 duckduckgo-search
 load_dotenv
