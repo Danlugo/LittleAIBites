@@ -1,0 +1,20 @@
+
+python3 -m venv /path/to/your/new/environment
+python3 -m venv my_env
+source my_env/bin/activate
+deactivate
+
+
+
+from dotenv import load_dotenv
+load_dotenv()
+
+
+from langchain_community.llms import Ollama
+from langchain_openai import ChatOpenAI
+
+load_dotenv()
+
+search_tool = DuckDuckGoSearchRun()
+
+default_llm=llm=ChatOpenAI(model_name="gpt-3.5-turbo", temperature=0.7) #Ollama(model="mistral")
