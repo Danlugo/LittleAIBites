@@ -4,3 +4,6 @@ openai
 crewai
 duckduckgo-search
 load_dotenv
+google-auth
+google-auth-oauthlib
+google-api-python-client
