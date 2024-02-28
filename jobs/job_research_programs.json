@@ -1,0 +1,21 @@
+{
+    "topic": "Give me the best in class of technology education programs for high school students in USA accross all States",
+    "agent1": {
+        "role": "Senior Research Analyst",
+        "goal": "Research: '#topic#'",
+        "backstory": "You work at a leading technology education company. Your expertise lies in finding the most accurate information tech education programs , in this case you will be researching: '#topic#'. You have a knack for dissecting complex data and presenting actionable insights"
+    },
+    "agent2": {
+        "role": "Strategist writer",
+        "goal": "Craft compelling content about '#topic#'",
+        "backstory": "You are a renowned tech educator , known for your insightful and engaging articles. You transform complex concepts into compelling narratives."
+    },
+    "task1": {
+        "description": "Conduct a comprehensive analysis for '#topic#'. Check top 10 technology programs for high schoolers to find out what are the top emegenging technologies. For each of the technology program found, include program name, offerings, cost, duration, selectivity and url links to the program. Check which one is the one that is most likely be successful and why. Your final answer MUST be a full analysis report",
+        "expected_output": "A json file following the example structure updated for how many top items is requested: {\"title\":\"decription\",\"description\":\"description_notes\",\"points\":[\"point1\",\"point2\",\"point3\"],\"urls\":[\"url1\",\"url2\",\"url3\"]}"
+    },
+    "task2": {
+        "description": "Using the insights provided, develop an engaging document for '#topic#'. Your document should be informative yet accessible, catering to audiences insterested in using the company services. It should include the Summary at the top, then bullet points for the top 10 programs and its details from the analysis and final conclusion which one is the best program. Make it sound professional, avoid complex words so it doesn't sound like AI. Your final answer MUST be the full document",
+        "expected_output": "A Markup Document containing Summary, Bullet List Items with all the requested attributes alogn with URL and final conclusion"
+    }
+}

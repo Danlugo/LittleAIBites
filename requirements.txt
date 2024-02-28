@@ -1,10 +1,11 @@
 openai
-cohere
-tiktoken
 crewai
-duckduckgo-search
 load_dotenv
+duckduckgo-search
 google-auth
 google-auth-oauthlib
 google-api-python-client
-StreamlitGAuth
+streamlit
+
+#cohere
+#tiktoken
