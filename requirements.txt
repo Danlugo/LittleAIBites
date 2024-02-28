@@ -6,6 +6,10 @@ google-auth
 google-auth-oauthlib
 google-api-python-client
 streamlit
-
-#cohere
-#tiktoken
+datetime
+socket
+json
+langchain
+langchain-community
+HuggingFaceHub
+PyPDF2
