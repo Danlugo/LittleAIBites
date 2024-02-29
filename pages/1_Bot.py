@@ -3,17 +3,6 @@ import socket
 import streamlit as st
 from openai import OpenAI
 
-# configuration
-openai_api_key = None
-
-# if running from my local machine
-if 'Daniels-iMac.local' in st.session_state.hostname:
-    st.session_state.openai_api_key = st.secrets.openai['key']
-
-# if running from codeshare codespaces
-if 'codespaces' not in st.session_state.hostname:
-    st.session_state.openai_api_key = st.secrets.openai['key']
-st.set_page_config(layout='wide')
 
 with st.sidebar:
     # for locall development, create .streamlit folder with secreats.toml file
@@ -22,13 +11,14 @@ with st.sidebar:
 
     if 'openai_api_key' in st.session_state:
         #st.write(st.session_state.openai_api_key)
-        if st.session_state.openai_api_key == None:
-            st.warning("Please add your OpenAI API key on the main page to continue.")
+        if not st.session_state.openai_api_key == None:
+            if not st.session_state.openai_api_key == '':
+                st.info("OpenAI enabled")
         else:
-            st.info("OpenAI enabled")
-
+            st.warning("Please add your OpenAI API key on the main page to continue.")
+                
     if 'disable_functionality' in st.session_state:
-        #st.write('Disabled', st.session_state.disable_functionality)
+        st.write('Disabled', st.session_state.disable_functionality)
         pass
 
 st.title("💬 Chatbot")

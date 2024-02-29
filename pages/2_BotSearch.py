@@ -5,13 +5,6 @@ from langchain.tools import DuckDuckGoSearchRun
 from langchain.chat_models import ChatOpenAI
 import streamlit as st
 
-# if running from my local machine
-if 'Daniels-iMac.local' in st.session_state.hostname:
-    st.session_state.openai_api_key = st.secrets.openai['key']
-
-# if running from codeshare
-if 'codespaces' in st.session_state.hostname:
-    st.session_state.openai_api_key = st.secrets.openai['key']
 st.set_page_config(layout='wide')
 
 with st.sidebar:
@@ -20,11 +13,15 @@ with st.sidebar:
     st.image(image_path, width=100)
 
     if 'openai_api_key' in st.session_state:
-        if st.session_state.openai_api_key == None:
-            st.warning("Please add your OpenAI API key on the main page to continue.")
+        if not st.session_state.openai_api_key == None:
+            if not st.session_state.openai_api_key == '':
+                st.info("OpenAI enabled")
         else:
-            st.info("OpenAI enabled")
-
+            st.warning("Please add your OpenAI API key on the main page to continue.")
+            
+    if 'disable_functionality' in st.session_state:
+        st.write('Disabled', st.session_state.disable_functionality)
+        pass
     
 st.title("🔎 Chat with search")
 st.caption("🚀 A streamlit chatbot powered by OpenAI LLM and DuckDuckGo Search")

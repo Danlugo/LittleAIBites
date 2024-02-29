@@ -5,13 +5,6 @@ from common.PDFBot import PDFBot
 import socket
 
 # Configuration
-# if running from my local machine
-if 'Daniels-iMac.local' in st.session_state.hostname:
-    st.session_state.openai_api_key = st.secrets.openai['key']
-
-# if running from codeshare
-if 'codespaces' in st.session_state.hostname:
-    st.session_state.openai_api_key = st.secrets.openai['key']
 
 # check for chat state variables
 if "conversation" not in st.session_state:
@@ -53,19 +46,24 @@ with st.sidebar:
     st.image(image_path, width=100)
 
     if 'openai_api_key' in st.session_state:
-        if st.session_state.openai_api_key == None:
-            st.warning("Please add your OpenAI API key on the main page to continue.")
+        #st.write(st.session_state.openai_api_key)
+        if not st.session_state.openai_api_key == None:
+            if not st.session_state.openai_api_key == '':
+                st.info("OpenAI enabled")
         else:
-            st.info("OpenAI enabled")
+            st.warning("Please add your OpenAI API key on the main page to continue.")
+
+    if 'disable_functionality' in st.session_state:
+        st.write('Disabled', st.session_state.disable_functionality)
+        pass
 
     st.subheader("Your documents")
     pdf_docs = st.file_uploader(
         "Upload your PDFs here and click on 'Process'", accept_multiple_files=True)
     
     if not 'openai_api_key' in st.session_state:
-        if not openai_key:
-            st.info("Please add your OpenAI API key on the main page to continue.")
-            st.stop()
+        st.info("Please add your OpenAI API key on the main page to continue.")
+        st.stop()
     else:
         b = PDFBot(st.session_state.openai_api_key)
 
