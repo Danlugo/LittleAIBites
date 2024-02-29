@@ -18,16 +18,16 @@ def main():
     st.image(image_path, width=400)
 
     st.markdown("""
-    ## App Contains:
+    # App Contains:
     This streamlit demo app aims at providing various AI bot usages in one place.
 
-    # Pages:
+    ## Pages:
         1. Bot : Showcases a generic chatbot like chatgpt or gemini (on text)
         2. BotSearch: Like the Bot example but it has access to the internet thus it is more practical.
         3. MultiBot: Combines the power of multiple AI agents talking to each other to accomplish a task. The agents also have access to the internet.
         4. PDF Reader: Allows you to upload multiple PDF files and converse with them. Its a great demo for researching documents.
 
-    # Next:
+    ## Next:
         1. Will be adding more AI functionalities in the future to demostrate how we can use AI
         2. Will continue to improve UI (Theme, Menus, etc)
     
