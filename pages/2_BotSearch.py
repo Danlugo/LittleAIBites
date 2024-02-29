@@ -13,22 +13,25 @@ if 'Daniels-iMac.local' in hostname:
     openai_key = st.secrets.openai['key']
 
 with st.sidebar:
+    # for locall development, create .streamlit folder with secreats.toml file
+    image_path = st.secrets.logo
+    st.image(image_path, width=100)
     openai_api_key = st.text_input("OpenAI API Key", key="langchain_search_api_key_openai", type="password")
 
 
 st.title("🔎 Chat with search")
 st.caption("🚀 A streamlit chatbot powered by OpenAI LLM and DuckDuckGo Search")
 
-if "messages" not in st.session_state:
-    st.session_state["messages"] = [
+if "search_messages" not in st.session_state:
+    st.session_state["search_messages"] = [
         {"role": "assistant", "content": "Hi, I'm a chatbot who can search the web. How can I help you?"}
     ]
 
-for msg in st.session_state.messages:
+for msg in st.session_state.search_messages:
     st.chat_message(msg["role"]).write(msg["content"])
 
 if prompt := st.chat_input(placeholder="What is the latest news for today"):
-    st.session_state.messages.append({"role": "user", "content": prompt})
+    st.session_state.search_messages.append({"role": "user", "content": prompt})
     st.chat_message("user").write(prompt)
 
     if openai_key:
@@ -44,6 +47,6 @@ if prompt := st.chat_input(placeholder="What is the latest news for today"):
 
     with st.chat_message("assistant"):
         st_cb = StreamlitCallbackHandler(st.container(), expand_new_thoughts=False)
-        response = search_agent.run(st.session_state.messages, callbacks=[st_cb])
-        st.session_state.messages.append({"role": "assistant", "content": response})
+        response = search_agent.run(st.session_state.search_messages, callbacks=[st_cb])
+        st.session_state.search_messages.append({"role": "assistant", "content": response})
         st.write(response)

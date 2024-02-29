@@ -14,8 +14,8 @@ class PDFBot:
     version: float = 0.01
     openai_key: str = None
 
-    def __init__(self) -> None:
-        self.openai_key = st.secrets.openai['key']
+    def __init__(self, openai_api_key) -> None:
+        self.openai_key = openai_api_key
 
 
     def get_vectorstore(self, text_chunks):
@@ -44,7 +44,8 @@ class PDFBot:
 
 
     def get_conversation_chain(self, vectorstore):
-        llm = ChatOpenAI(temperature=0.3, openai_api_key=self.openai_key)
+        llm = ChatOpenAI(model_name="gpt-3.5-turbo", temperature=0.3, openai_api_key=self.openai_key)
+        # model_name="gpt-3.5-turbo", temperature=0.3, openai_api_key=openai_api_key
         memory = ConversationBufferMemory(memory_key='chat_history', return_messages=True)
         conversation_chain = ConversationalRetrievalChain.from_llm(
             llm=llm,

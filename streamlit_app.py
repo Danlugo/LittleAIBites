@@ -15,7 +15,7 @@ developer = st.secrets.email
 def main():
 
     st.set_page_config(page_title="Little AI Bites", page_icon=None, layout="wide", initial_sidebar_state="auto")
-    st.image(image_path, width=400)
+    st.image(image_path, width=200)
 
     st.markdown("""
     # App Contains:

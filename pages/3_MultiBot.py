@@ -32,7 +32,7 @@ st.caption("🚀 A streamlit chatbot powered by CrewAI, OpenAI LLM and DuckDuckG
 tab1, tab2, tab3 = st.tabs(["Bot", "Settings", "Archived Results"])
 
 with st.sidebar:
-    st.image(image_path, width=100) 
+    st.image(image_path, width=100)
     openai_api_key = st.text_input("OpenAI API Key", key=openai_api_key, type="password")
 
     #options = ['Default', 'Research Program', 'Research News']
