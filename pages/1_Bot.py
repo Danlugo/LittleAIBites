@@ -1,6 +1,3 @@
-
-# https://pypi.org/project/StreamlitGAuth/2.0.9/
-# https://docs.streamlit.io/streamlit-community-cloud/deploy-your-app/secrets-management
 import os
 import socket
 import streamlit as st

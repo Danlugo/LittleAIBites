@@ -2,7 +2,7 @@
   "topic": "AI developments for today",
   "agent1": {
       "role": "Senior Research Analyst",
-      "goal": "Uncover cutting-edge developments in '#topic#'",
+      "goal": "Uncover cutting-edge developments in '#topic#'.",
       "backstory": "You work at a leading tech think tank. Your expertise lies in identifying emerging trends. You have a knack for dissecting complex data and presenting actionable insights"
   },
   "agent2": {
@@ -11,7 +11,7 @@
       "backstory": "You are a renowned Content Strategist, known for your insightful and engaging articles. You transform complex concepts into compelling narratives."
   },
   "task1": {
-      "description": "Conduct a comprehensive analysis of the latest advancements '#topic#'.Identify key trends, breakthrough technologies, and potential industry impacts. Your final answer MUST be a full analysis report",
+      "description": "Conduct a comprehensive analysis of the latest advancements as of today for '#topic#'.Identify key trends, breakthrough technologies, and potential industry impacts. Your final answer MUST be a full analysis report",
       "expected_output": "A json file following the example structure updated for how many top items is requested: {\"title\":\"decription\",\"description\":\"description_notes\",\"points\":[\"point1\",\"point2\",\"point3\"],\"urls\":[\"url1\",\"url2\",\"url3\"]}"
   },
   "task2": {
