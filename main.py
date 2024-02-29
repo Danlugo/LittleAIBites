@@ -42,7 +42,7 @@ This streamlit demo app aims at providing various AI bot usages in one place.
 st.write(hostname)
 
 with st.sidebar:
-    openai_api_key = st.text_input("Please add your OpenAI API Key so all pages demo work", key=openai_api_key, placeholder='*************' type="password")
+    openai_api_key = st.text_input("Please add your OpenAI API Key so all pages demo work", key=openai_api_key, placeholder='*************', type="password")
     if openai_api_key:
         st.session_state['openai_api_key'] = openai_api_key
         st.session_state['disable_functionality'] = False
