@@ -21,7 +21,7 @@ chromadb==0.4.23
 click==8.1.7
 coloredlogs==15.0.1
 contextlib2==21.6.0
-crewai==0.14.3
+crewai==0.16.3
 crewai-tools==0.0.6
 curl_cffi==0.6.1
 dataclasses-json==0.6.4
