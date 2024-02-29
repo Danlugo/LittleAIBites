@@ -1,16 +1,14 @@
-import os
-import socket
 from common.AgentsBot import AgentsBot
 import streamlit as st
-import json
+import socket
+
 
 image_path = st.secrets.logo
 results = 'Results will be displayed here'
-fqdn = socket.getfqdn()
 hostname = socket.gethostname()
 openai_api_key = None
 openai_key = None
-settings_disable = True
+settings_disable = False
 
 # if running from my local machine
 if 'Daniels-iMac.local' in hostname:
@@ -36,9 +34,7 @@ tab1, tab2 = st.tabs(["Bot", "Settings"])
 
 with st.sidebar:
     st.image(image_path, width=100) 
-
     openai_api_key = st.text_input("OpenAI API Key", key=openai_key, type="password")
-
 
 
 with tab2:
@@ -59,22 +55,21 @@ with tab2:
     st.subheader('Task #2')
     task2_description = st.text_area('Description',task2_description, disabled = settings_disable)
 
+
 ## MAIN BODY OF PAGE ##
 with tab1:
     st.subheader("Topic")
     topic = st.text_input('Topic', placeholder=topic_placeholder)
     st.write(results)
     if st.button("Get Report"):
-        if not openai_api_key:
-            if not openai_key:
-                st.info("Please add your OpenAI API key to continue.")
-                st.stop()
-            else:
-                    openai_api_key = openai_key
 
-            if not topic:
-                st.info("Please add your topic to continue.")
-                st.stop()
+        if not openai_api_key:
+            st.info("Please add your OpenAI API key to continue.")
+            st.stop()
+
+        if not topic:
+            st.info("Please add your topic to continue.")
+            st.stop()
 
         # override user passed settings
         c.config['topic'] = topic
