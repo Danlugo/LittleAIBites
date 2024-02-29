@@ -7,9 +7,17 @@ import os
 
 image_path = st.secrets.logo
 results = ''
-hostname = socket.gethostname()
-openai_api_key = None
 settings_disable = False
+
+# if running from my local machine
+if 'Daniels-iMac.local' in st.session_state.hostname:
+    st.session_state.openai_api_key = st.secrets.openai['key']
+
+# if running from codeshare
+if 'codespaces' in st.session_state.hostname:
+    st.session_state.openai_api_key = st.secrets.openai['key']
+
+st.set_page_config(layout='wide')
 
 # load Default Job.
 j = AgentsJob()
@@ -33,7 +41,12 @@ tab1, tab2, tab3 = st.tabs(["Bot", "Settings", "Archived Results"])
 
 with st.sidebar:
     st.image(image_path, width=100)
-    openai_api_key = st.text_input("OpenAI API Key", key=openai_api_key, type="password")
+    
+    if 'openai_api_key' in st.session_state:
+        if st.session_state.openai_api_key == None:
+            st.warning("Please add your OpenAI API key on the main page to continue.")
+        else:
+            st.info("OpenAI enabled")
 
     #options = ['Default', 'Research Program', 'Research News']
     option = st.selectbox('Select a crew agent',('Default', 'Research Program', 'Research News'))
@@ -95,39 +108,29 @@ with tab1:
     topic = st.text_input('', placeholder=topic_placeholder)
     st.write(results)
 
-    # if running from my local machine
-    if 'Daniels-iMac.local' in hostname:
-        openai_api_key = st.secrets.openai['key']
+    if st.session_state.openai_api_key:
 
-    # if running from codeshare
-    if 'codeshare' in hostname:
-        openai_api_key = st.secrets.openai['key']
+        if st.button("Get Report"):
 
-    if st.button("Get Report"):
+            if not topic:
+                st.info("Please add topic to continue")
+                st.stop()
 
-        if not openai_api_key:
-            st.info("Please add your OpenAI API key to continue.")
-            st.stop()
+            with st.spinner('Wait for it...'):
 
-        if not topic:
-            st.info("Please add your topic to continue.")
-            st.stop()
+                c = AgentsBot(openai_api_key=st.session_state.openai_api_key)   
+                j.config['topic'] = topic
+                j.config['agent1']['role'] = agent1_role
+                j.config['agent1']['goal'] = agent1_goal
+                j.config['agent1']['backstory'] = agent1_backstory
+                j.config['agent2']['role'] = agent2_role
+                j.config['agent2']['goal'] = agent2_goal
+                j.config['agent2']['backstory'] = agent2_backstory
+                j.config['task1']['description'] = task1_description
+                j.config['task2']['description'] = task2_description
 
-        with st.spinner('Wait for it...'):
-
-            c = AgentsBot(openai_api_key=openai_api_key)   
-            j.config['topic'] = topic
-            j.config['agent1']['role'] = agent1_role
-            j.config['agent1']['goal'] = agent1_goal
-            j.config['agent1']['backstory'] = agent1_backstory
-            j.config['agent2']['role'] = agent2_role
-            j.config['agent2']['goal'] = agent2_goal
-            j.config['agent2']['backstory'] = agent2_backstory
-            j.config['task1']['description'] = task1_description
-            j.config['task2']['description'] = task2_description
-
-            c.config = j.config
-            crew_results = c.run()
-            results = crew_results
-            st.markdown(results)
+                c.config = j.config
+                crew_results = c.run()
+                results = crew_results
+                st.markdown(results)
     
