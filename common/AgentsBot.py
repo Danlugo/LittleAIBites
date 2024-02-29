@@ -3,11 +3,10 @@ from langchain_community.llms import Ollama
 from langchain_openai import ChatOpenAI
 from crewai import Agent, Task, Crew
 from dotenv import load_dotenv
-import streamlit as st
 import datetime
-import socket
 import json
 import os
+
 
 class AgentsBot:
     """ 
@@ -17,7 +16,6 @@ class AgentsBot:
     """
 
     version = 0.02
-    api_key = None
     config = None
     search_tool = None
     agent_verbose = True
@@ -25,15 +23,9 @@ class AgentsBot:
     default_llm = None
     local_llm = None
 
-    def __init__(self) -> None:
-        fqdn = socket.getfqdn()
-        hostname = socket.gethostname()
-        openai_api_key = st.secrets.openai['key']
-
-        if 'Daniels-iMac.local' in hostname:
-            self.api_key = openai_api_key
-
-        self.cloud_llm=ChatOpenAI(model_name="gpt-3.5-turbo", temperature=0.3, openai_api_key=self.api_key)
+    def __init__(self, openai_api_key) -> None:
+        load_dotenv(dotenv_path='.streamlit/.env')
+        self.cloud_llm=ChatOpenAI(model_name="gpt-3.5-turbo", temperature=0.3, openai_api_key=openai_api_key)
         self.local_llm=Ollama(model="mistral")
         self.default_llm = self.cloud_llm
         self.search_tool = DuckDuckGoSearchRun()
@@ -123,7 +115,8 @@ class AgentsBot:
 
 
 if __name__ == "__main__":
-    c = AgentsBot()
+    openai_api_key = os.environ.get('OPENAI_API_KEY')
+    c = AgentsBot(openai_api_key)
     c.load_json_file('jobs/job_research_programs.json')
     c.printify()
     j = c.run()
