@@ -17,6 +17,7 @@ with st.sidebar:
 
 
 st.title("🔎 Chat with search")
+st.caption("🚀 A streamlit chatbot powered by OpenAI LLM and DuckDuckGo Search")
 
 if "messages" not in st.session_state:
     st.session_state["messages"] = [

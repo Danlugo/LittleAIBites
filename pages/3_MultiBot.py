@@ -26,7 +26,8 @@ task1_description = j.config['task1']['description']
 task2_description = j.config['task2']['description']
 
 
-st.title("Research Bot")
+st.title("🔎 Multiple Agents with search capability")
+st.caption("🚀 A streamlit chatbot powered by CrewAI, OpenAI LLM and DuckDuckGo Search")
 
 tab1, tab2, tab3 = st.tabs(["Bot", "Settings", "Archived Results"])
 

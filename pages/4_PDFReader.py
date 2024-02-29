@@ -20,7 +20,8 @@ def handle_userinput(user_question):
     
 b = PDFBot()
 
-st.set_page_config(page_title="Chat with multiple PDFs", page_icon=":books:")
+st.title("🔎 Chat with multiple PDFS :books:")
+st.caption("🚀 A streamlit chatbot powered by OpenAI LLM, OpenAI Embeddings, Vector (FAISS) DB and PyPDF2")
 
 st.write(css, unsafe_allow_html=True)
 
@@ -49,8 +50,6 @@ with st.sidebar:
             # create conversation chain
             st.session_state.conversation = b.get_conversation_chain(vectorstore)
 
-
-st.header("Chat with multiple PDFs :books:")
 user_question = st.chat_input("Ask a question about your documents:")
 
 if user_question:
