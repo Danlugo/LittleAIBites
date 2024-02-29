@@ -28,6 +28,7 @@ task2_description = j.config['task2']['description']
 
 st.title("🔎 Multiple Agents with search capability")
 st.caption("🚀 A streamlit chatbot powered by CrewAI, OpenAI LLM and DuckDuckGo Search")
+st.warning(":bomb: !!!Please note that ran jobs are saved and accessible in 'Archive Results' tab. Please DONT add text that are keys/passwords to it!!!")
 
 tab1, tab2, tab3 = st.tabs(["Bot", "Settings", "Archived Results"])
 
