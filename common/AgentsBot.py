@@ -7,6 +7,25 @@ import datetime
 import json
 import os
 
+class AgentsJob:
+
+    def __init__(self) -> None:
+        pass
+
+    def load_job(self, job_dict):
+        # load the dictionary objects into the config dictionary object
+        self.config = job_dict
+
+
+    def load_json_file(self, file_name):
+        # load the json file values into a dictionary object
+        with open(file_name, 'r') as f:
+            data = f.read()
+            self.config = json.loads(data)
+            
+    def load_default_Job(self):
+        file_name = 'jobs/job_default.json'
+        self.load_json_file(file_name)
 
 class AgentsBot:
     """ 

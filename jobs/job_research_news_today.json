@@ -1,0 +1,21 @@
+{
+  "topic": "Latest for AI News",
+  "agent1": {
+      "role": "Senior News Analyst",
+      "goal": "Uncover latest news for '#topic#'",
+      "backstory": "You work at a leading news company. Your expertise lies in identifying the latest news around the web as of today and if there is nothing for today as of last week or last month. You have a knack for dissecting complex data and presenting actionable insights"
+  },
+  "agent2": {
+      "role": "Senior News Content Writer",
+      "goal": "Craft compelling content on news articles for '#topic#'",
+      "backstory": "You are a renowned Content Writer, known for your insightful and engaging articles. You analyze and resume articles so they are easy to understand and provide why is it important."
+  },
+  "task1": {
+      "description": "Conduct a comprehensive analysis of the latest news for '#topic#'. Identify key the latest news from reputable sources including reddit - check at least 10 articles if possible. Your final answer MUST be a full analysis report",
+      "expected_output": "A json file following example structure that you will need to fill out with the findings: {\"topic\":\"article\",\"description\":\"description_notes\",\"urls\":[\"url1\",\"url2\",\"url3\"]}"
+  },
+  "task2": {
+      "description": "Using the insights provided, develop an engaging blog that analysis '#topic#'.Your post should be informative yet accessible. Make it sound cool, avoid complex words so it doesn't sound like AI. Your final answer MUST be the full blog post that contains all the found information.",
+      "expected_output": "A cleaned Markup Document using the same font containing Summary of what was searched, date of the search in format:[mm-dd-yyyy], List articles with urls and a final conclusion"
+  }
+}

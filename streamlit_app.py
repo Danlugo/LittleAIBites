@@ -6,7 +6,6 @@ import socket
 import streamlit as st
 
 # configuration
-fqdn = socket.getfqdn()
 hostname = socket.gethostname()
 
 image_path = st.secrets.logo
@@ -18,7 +17,6 @@ def main():
     st.set_page_config(page_title="Little AI Bites", page_icon=None, layout="wide", initial_sidebar_state="auto")
     st.image(image_path, width=400)
     st.write("This Streamlit app shows how we can interact with multiple AI technologies")
-    st.write('Debug - FQDN',fqdn)
     st.write('Debug - hostname',hostname)
 
 
