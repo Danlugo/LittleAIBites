@@ -45,7 +45,7 @@ This is an streamlit demo app that showcases various AI bot usages in one place 
 """)
 
 data = 'videos/intro.mp4'
-st.video(data, format="video/mp4", start_time=0)
+st.video(data, format="video/mp4", start_time=3)
 #st.write(hostname)
 
 with st.sidebar:
