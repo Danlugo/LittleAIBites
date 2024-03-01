@@ -27,8 +27,11 @@ st.set_page_config(page_title="Little AI Bites", page_icon=None, layout="wide", 
 st.image('images/header_02.png', width=1000)
 
 st.markdown("""
+
+:exclamation: IN DEVELOPMENT :exclamation: | :exclamation: IN DEVELOPMENT :exclamation: | :exclamation: IN DEVELOPMENT :exclamation:
+
 # App
-This is an streamlit demo app that showcases various AI bot usages in one place using a very lite UI framework that is easy to build and maintain.
+This is a demo of a streamlit app that showcases various AI bot usages in one place using a very lite UI framework that is easy to build and maintain.
 
 ## Pages
 1. Bot : Showcases a generic chatbot like chatgpt or gemini (on text)
