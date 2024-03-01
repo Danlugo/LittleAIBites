@@ -3,10 +3,11 @@ import socket
 import streamlit as st
 from openai import OpenAI
 
+# Configuration
+image_path = st.session_state.side_bar_image
 
 with st.sidebar:
-    # for locall development, create .streamlit folder with secreats.toml file
-    image_path = st.secrets.logo
+    # for locall development, create .streamlit folder with secreats.toml file    
     st.image(image_path, width=100)
 
     if 'openai_api_key' in st.session_state:

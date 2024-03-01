@@ -4,8 +4,11 @@ import streamlit as st
 
 # configuration
 hostname = socket.gethostname()
-image_path = st.secrets.logo
+image_path = 'images/side_bar_bot_01.png'
 openai_api_key = None
+
+if not 'side_bar_image' in st.session_state:
+    st.session_state.side_bar_image = image_path
 
 if not 'hostname' in st.session_state:
     st.session_state['hostname'] = hostname

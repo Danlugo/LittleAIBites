@@ -5,11 +5,12 @@ from langchain.tools import DuckDuckGoSearchRun
 from langchain.chat_models import ChatOpenAI
 import streamlit as st
 
+# Configuration
+image_path = st.session_state.side_bar_image
 st.set_page_config(layout='wide')
 
 with st.sidebar:
     # for locall development, create .streamlit folder with secreats.toml file
-    image_path = st.secrets.logo
     st.image(image_path, width=100)
 
     if 'openai_api_key' in st.session_state:

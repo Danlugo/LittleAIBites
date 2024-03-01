@@ -5,6 +5,7 @@ from common.PDFBot import PDFBot
 import socket
 
 # Configuration
+image_path = st.session_state.side_bar_image
 
 # check for chat state variables
 if "conversation" not in st.session_state:
@@ -42,7 +43,6 @@ st.write(css, unsafe_allow_html=True)
 # Side Bar configuration
 with st.sidebar:
     # for locall development, create .streamlit folder with secreats.toml file
-    image_path = st.secrets.logo
     st.image(image_path, width=100)
 
     if 'openai_api_key' in st.session_state:

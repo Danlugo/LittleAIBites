@@ -4,8 +4,8 @@ import socket
 import glob
 import os
 
-
-image_path = st.secrets.logo
+# configuration
+image_path = st.session_state.side_bar_image
 results = ''
 settings_disable = False
 
