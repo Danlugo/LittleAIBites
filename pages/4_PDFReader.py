@@ -65,28 +65,33 @@ with st.sidebar:
         st.info("Please add your OpenAI API key on the main page to continue.")
         st.stop()
     else:
-        b = PDFBot(st.session_state.openai_api_key)
 
-        if pdf_docs:
-            if st.button("Process"):
-                with st.spinner("Processing"):
-                    # get pdf text
-                    raw_text = b.get_pdf_text(pdf_docs)
+        try:
+            b = PDFBot(st.session_state.openai_api_key)
 
-                    # get the text chunks
-                    text_chunks = b.get_text_chunks(raw_text)
+            if pdf_docs:
+                if st.button("Process"):
+                    with st.spinner("Processing"):
+                        # get pdf text
+                        raw_text = b.get_pdf_text(pdf_docs)
 
-                    # create vector store
-                    vectorstore = b.get_vectorstore(text_chunks)
+                        # get the text chunks
+                        text_chunks = b.get_text_chunks(raw_text)
 
-                    # create conversation chain
-                    st.session_state.conversation = b.get_conversation_chain(vectorstore)
+                        # create vector store
+                        vectorstore = b.get_vectorstore(text_chunks)
 
-                    # enable
-                    st.session_state.question_disabled = False
+                        # create conversation chain
+                        st.session_state.conversation = b.get_conversation_chain(vectorstore)
 
-                    # Tell user that he/she is ready to ask questions
-                    st.info('Documents Processed!!, Please use the prompt to ask questions')
+                        # enable
+                        st.session_state.question_disabled = False
+
+                        # Tell user that he/she is ready to ask questions
+                        st.info('Documents Processed!!, Please use the prompt to ask questions')
+        except Exception as e:
+            st.warning('There was an error. Please make sure API Key is valid')
+            pass
 
 # MAIN BODY
 question = st.chat_input("Ask questions about your documents:", disabled=st.session_state.question_disabled)

@@ -43,7 +43,7 @@ class AgentsBot:
     local_llm = None
 
     def __init__(self, openai_api_key) -> None:
-        load_dotenv(dotenv_path='.streamlit/.env')
+        
         self.cloud_llm=ChatOpenAI(model_name="gpt-3.5-turbo", temperature=0.3, openai_api_key=openai_api_key)
         self.local_llm=Ollama(model="mistral")
         self.default_llm = self.cloud_llm
@@ -134,6 +134,7 @@ class AgentsBot:
 
 
 if __name__ == "__main__":
+    load_dotenv(dotenv_path='.streamlit/.env')
     openai_api_key = os.environ.get('OPENAI_API_KEY')
     c = AgentsBot(openai_api_key)
     c.load_json_file('jobs/job_research_programs.json')

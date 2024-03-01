@@ -117,19 +117,23 @@ with tab1:
 
             with st.spinner('Wait for it...'):
 
-                c = AgentsBot(openai_api_key=st.session_state.openai_api_key)   
-                j.config['topic'] = topic
-                j.config['agent1']['role'] = agent1_role
-                j.config['agent1']['goal'] = agent1_goal
-                j.config['agent1']['backstory'] = agent1_backstory
-                j.config['agent2']['role'] = agent2_role
-                j.config['agent2']['goal'] = agent2_goal
-                j.config['agent2']['backstory'] = agent2_backstory
-                j.config['task1']['description'] = task1_description
-                j.config['task2']['description'] = task2_description
+                try:
+                    c = AgentsBot(openai_api_key=st.session_state.openai_api_key)   
+                    j.config['topic'] = topic
+                    j.config['agent1']['role'] = agent1_role
+                    j.config['agent1']['goal'] = agent1_goal
+                    j.config['agent1']['backstory'] = agent1_backstory
+                    j.config['agent2']['role'] = agent2_role
+                    j.config['agent2']['goal'] = agent2_goal
+                    j.config['agent2']['backstory'] = agent2_backstory
+                    j.config['task1']['description'] = task1_description
+                    j.config['task2']['description'] = task2_description
 
-                c.config = j.config
-                crew_results = c.run()
-                results = crew_results
-                st.markdown(results)
+                    c.config = j.config
+                    crew_results = c.run()
+                    results = crew_results
+                    st.markdown(results)
+                except Exception as e:
+                    st.warning('There was an error. Please make sure API Key is valid')
+                    pass
     

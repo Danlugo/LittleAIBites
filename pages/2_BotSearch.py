@@ -41,12 +41,17 @@ if prompt := st.chat_input(placeholder="What is the latest news for today"):
 
     if 'openai_api_key' in st.session_state:
 
-        llm = ChatOpenAI(model_name="gpt-3.5-turbo", openai_api_key=st.session_state.openai_api_key, streaming=True)
-        search = DuckDuckGoSearchRun(name="Search")
-        search_agent = initialize_agent([search], llm, handle_parsing_errors=True) # , agent=AgentType.ZERO_SHOT_REACT_DESCRIPTION,
-
-        with st.chat_message("assistant"):
-            st_cb = StreamlitCallbackHandler(st.container(), expand_new_thoughts=False)
-            response = search_agent.run(st.session_state.search_messages, callbacks=[st_cb])
-            st.session_state.search_messages.append({"role": "assistant", "content": response})
-            st.write(response)
+        try:
+            llm = ChatOpenAI(model_name="gpt-3.5-turbo", openai_api_key=st.session_state.openai_api_key, streaming=True)
+            search = DuckDuckGoSearchRun(name="Search")
+            search_agent = initialize_agent([search], llm, handle_parsing_errors=True) # , agent=AgentType.ZERO_SHOT_REACT_DESCRIPTION,
+            
+            with st.chat_message("assistant"):
+                st_cb = StreamlitCallbackHandler(st.container(), expand_new_thoughts=False)
+                response = search_agent.run(st.session_state.search_messages, callbacks=[st_cb])
+                st.session_state.search_messages.append({"role": "assistant", "content": response})
+                st.write(response)
+        except Exception as e:
+            st.warning('There was an error. Please make sure API Key is valid')
+            pass
+        

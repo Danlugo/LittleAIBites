@@ -54,19 +54,32 @@ with st.sidebar:
     openai_api_key = st.text_input("Add OpenAI API Key and press enter", key=openai_api_key, placeholder='*************', type="password")
     if (openai_api_key != None):
         if (openai_api_key !=''):
-            
-            if(openai_api_key==st.secrets.developer):
-                open_api_key = st.screts.openai.key
 
-            st.session_state.openai_api_key = openai_api_key
-            st.session_state['disable_functionality'] = False
-            st.info('Key Added. Thanks')
+            if(openai_api_key == st.secrets.developer):
+                st.info('Using special Key')
+                open_api_key = st.secrets.openai.key
+                st.session_state.openai_api_key = st.secrets.openai.key
+                st.session_state['disable_functionality'] = False
+            else:
+                st.session_state.openai_api_key = openai_api_key
+                st.session_state['disable_functionality'] = False
+
+
 
     if st.session_state.openai_api_key != None:
         if st.session_state.openai_api_key != '':
             st.info('Key Added.')
 
+        if st.button('Reset api key'):
+            openai_api_key = None
+            st.session_state.openai_api_key = None
+            st.session_state['disable_functionality'] = True
+            st.rerun()
 
     if 'disable_functionality' in st.session_state:
         st.write('Disabled', st.session_state.disable_functionality)
         pass
+
+    
+    st.write("")
+    st.write("")
