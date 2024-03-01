@@ -42,9 +42,8 @@ class AgentsBot:
     default_llm = None
     local_llm = None
 
-    def __init__(self, openai_api_key) -> None:
-        
-        self.cloud_llm=ChatOpenAI(model_name="gpt-3.5-turbo", temperature=0.3, openai_api_key=openai_api_key)
+    def __init__(self, openai_api_key):
+        self.cloud_llm=ChatOpenAI(openai_api_key=openai_api_key, model_name="gpt-3.5-turbo", temperature=0.3)
         self.local_llm=Ollama(model="mistral")
         self.default_llm = self.cloud_llm
         self.search_tool = DuckDuckGoSearchRun()
@@ -89,7 +88,8 @@ class AgentsBot:
             allow_delegation=False,
             tools=[self.search_tool],
             max_iter=10,
-            max_rpm=14
+            max_rpm=14,
+            llm=self.default_llm
             )
     
         agent2 = Agent(
@@ -99,13 +99,14 @@ class AgentsBot:
             verbose=self.agent_verbose,
             allow_delegation=True,
             max_iter=10,
-            max_rpm=14      
+            max_rpm=14,
+            llm=self.default_llm   
             )
 
         task1 = Task( 
             description= self.config['task1']['description'].replace('#topic#',self.config['topic']), 
             agent=agent1, 
-            expected_output=self.config['task1']['expected_output']
+            expected_output=self.config['task1']['expected_output'],
             )
         
         task2 = Task( 
@@ -134,8 +135,8 @@ class AgentsBot:
 
 
 if __name__ == "__main__":
-    load_dotenv(dotenv_path='.streamlit/.env')
-    openai_api_key = os.environ.get('OPENAI_API_KEY')
+    # load_dotenv(dotenv_path='.streamlit/.env')
+    openai_api_key = 'test' #os.environ.get('OPENAI_API_KEY')
     c = AgentsBot(openai_api_key)
     c.load_json_file('jobs/job_research_programs.json')
     c.printify()
