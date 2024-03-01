@@ -5,19 +5,20 @@ from common.PDFBot import PDFBot
 import socket
 
 # Configuration
-image_path = st.session_state.side_bar_image
+image_path = 'images/side_bar_bot_01.png'
+st.set_page_config(page_title="PDFReader", page_icon=None, layout="wide", initial_sidebar_state="expanded")
 
-# check for chat state variables
-if "conversation" not in st.session_state:
-    st.session_state.conversation = None
+if not 'side_bar_image' in st.session_state:
+    st.session_state.side_bar_image = image_path
 
-if "chat_history" not in st.session_state:
-    st.session_state.chat_history = None
+if not 'openai_api_key' in st.session_state:
+    st.session_state['openai_api_key'] = None
 
-if "question_disabled" not in st.session_state:
-    st.session_state.question_disabled = True
+if not 'disable_functionality' in st.session_state:
+    st.session_state['disable_functionality'] = True
 
-st.set_page_config(layout='wide')
+if not 'question_disabled' in st.session_state:
+    st.session_state['question_disabled'] = True
 
 def handle_userinput(user_question):
     response = st.session_state.conversation({'question': user_question})

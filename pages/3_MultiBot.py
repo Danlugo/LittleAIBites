@@ -5,11 +5,19 @@ import glob
 import os
 
 # configuration
-image_path = st.session_state.side_bar_image
+image_path = 'images/side_bar_bot_01.png'
 results = ''
 settings_disable = False
+st.set_page_config(page_title="MultiBot", page_icon=None, layout="wide", initial_sidebar_state="expanded")
 
-st.set_page_config(layout='wide')
+if not 'side_bar_image' in st.session_state:
+    st.session_state.side_bar_image = image_path
+
+if not 'openai_api_key' in st.session_state:
+    st.session_state['openai_api_key'] = None
+
+if not 'disable_functionality' in st.session_state:
+    st.session_state['disable_functionality'] = True
 
 # load Default Job.
 j = AgentsJob()
@@ -28,7 +36,7 @@ task2_description = j.config['task2']['description']
 
 st.title("🔎 Multiple Agents with search capability")
 st.caption("🚀 A streamlit chatbot powered by CrewAI, OpenAI LLM and DuckDuckGo Search")
-st.warning(":bomb: !!!Please note that ran jobs are saved and accessible in 'Archive Results' tab. Please DONT add text that are keys/passwords to it!!!")
+st.warning(":bomb: !!!Please note that reports are saved and accessible in 'Archive Results' tab. Please DONT add text that are keys/passwords to it!!!")
 
 tab1, tab2, tab3 = st.tabs(["Bot", "Settings", "Archived Results"])
 
@@ -134,6 +142,6 @@ with tab1:
                     results = crew_results
                     st.markdown(results)
                 except Exception as e:
-                    st.warning('There was an error. Please make sure API Key is valid')
+                    st.warning('There was an error. Please make sure API Key is valid', e)
                     pass
     

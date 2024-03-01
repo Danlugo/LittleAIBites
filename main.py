@@ -48,8 +48,6 @@ This is an streamlit demo app that showcases various AI bot usages in one place 
 
 with st.sidebar:
     st.image(image_path, width=100)
-    #st.write(openai_api_key)
-    #st.write(st.session_state.openai_api_key)
 
     openai_api_key = st.text_input("Add OpenAI API Key and press enter", key=openai_api_key, placeholder='*************', type="password")
     if (openai_api_key != None):
