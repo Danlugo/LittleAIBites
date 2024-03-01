@@ -21,7 +21,7 @@ if not 'disable_functionality' in st.session_state:
 
 
 st.set_page_config(page_title="Little AI Bites", page_icon=None, layout="wide", initial_sidebar_state="auto")
-st.image(image_path, width=200)
+st.image('images/header_02.png', width=1000)
 
 st.markdown("""
 # App Contains:
@@ -42,7 +42,7 @@ This streamlit demo app aims at providing various AI bot usages in one place.
 st.write(hostname)
 
 with st.sidebar:
-
+    st.image(image_path, width=100)
     #st.write(openai_api_key)
     #st.write(st.session_state.openai_api_key)
 
