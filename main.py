@@ -44,6 +44,8 @@ This is an streamlit demo app that showcases various AI bot usages in one place 
 1. Please use the left sidebar to enter your API Keys to enable the functionality of all the bots.
 """)
 
+data = 'videos/intro.mp4'
+st.video(data, format="video/mp4", start_time=0)
 #st.write(hostname)
 
 with st.sidebar:
