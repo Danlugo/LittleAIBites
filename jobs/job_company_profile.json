@@ -1,0 +1,21 @@
+{
+    "topic": "Please type Company Name",
+    "agent1": {
+        "role": "Senior Research Analyst",
+        "goal": "Researcher that finds the latest insights about company profiles for business. This time is for '#topic#'",
+        "backstory": "You work at a leading  branding firm that create company profiles. Your expertise lies in identifying the most important topics and cover all the areas needed to build a company profile"
+    },
+    "agent2": {
+        "role": "Senior Content Writer",
+        "goal": "Build well documented, solid documentation about a company. This time is for #topic#'",
+        "backstory": "You are a renowned Content writer, known for building excellent company profiles for businesses."
+    },
+    "task1": {
+        "description": "Conduct a comprehensive analysis for '#topic#' on following areas: Company Overview: Provide a brief introduction to the company, including its history, mission, and values. Products and Services: Describe the range of products or services offered by the company, highlighting any unique selling points. Target Market: Identify the target audience or market segment that the company serves. Key Differentiators: Highlight what sets the company apart from competitors, such as innovative technology, exceptional customer service, or competitive pricing. Company Achievements: Showcase any notable achievements, awards, or certifications that the company has earned. Team Members: Introduce key team members and their roles within the company, highlighting their expertise and experience. Client Testimonials: Include testimonials from satisfied clients to demonstrate the company's track record of delivering quality products or services. Contact Information: Provide contact details for the company, including address, phone number, email, and social media links. Company Culture: Describe the company's culture and values, emphasizing its commitment to diversity, sustainability, and community engagement. Future Plans: Outline the company's goals and plans for future growth and expansion. Make sure to use the latest updated information for the current year.",
+        "expected_output": "A Markup Documented with all the findings"
+    },
+    "task2": {
+        "description": "YOU MUST Include all the insights provided and add and addition summary for each section.",
+        "expected_output": "A Markup Documented providing the topics: 1. Company Overview, 2. Products and Services, 3. Target Market, 4. Key Differentiators, 5. Company Achievements, 6. Team Members, 7. Client Testimonials, 8. Contact Information, 9. Company Culture, 10. Future Plans, 11. Stocks. For each topic include original findings and add a conclusion. At the end of the document add final conclusion and recommendation about either investing and applying to the company."
+    }
+  }

@@ -2,6 +2,7 @@ from langchain_community.tools import DuckDuckGoSearchRun
 from langchain_community.llms import Ollama
 from langchain_openai import ChatOpenAI
 from crewai import Agent, Task, Crew
+from crewai_tools import ScrapeWebsiteTool
 from dotenv import load_dotenv
 import datetime
 import json
@@ -47,6 +48,7 @@ class AgentsBot:
         self.local_llm=Ollama(model="mistral")
         self.default_llm = self.cloud_llm
         self.search_tool = DuckDuckGoSearchRun()
+        self.scrape_web_site_Tool = ScrapeWebsiteTool()
 
 
     def load_default_Job(self):
@@ -86,7 +88,7 @@ class AgentsBot:
             backstory = self.config['agent1']['backstory'].replace('#topic#',self.config['topic']),
             verbose=self.agent_verbose,
             allow_delegation=False,
-            tools=[self.search_tool],
+            tools=[self.search_tool, self.scrape_web_site_Tool],
             max_iter=10,
             max_rpm=14,
             llm=self.default_llm

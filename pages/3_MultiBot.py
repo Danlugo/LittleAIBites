@@ -56,16 +56,19 @@ with st.sidebar:
         pass
 
     #options = ['Default', 'Research Program', 'Research News']
-    option = st.selectbox('Select a crew agent',('Default', 'Research Program', 'Research News'))
+    option = st.selectbox('Select a crew agent',('Default', 'Research Program', 'Research News', 'Company Profile'))
     if option:
         if 'Program' in option:
-            st.write('Loading Research Program')
+            st.write('Loading Template')
             j.load_json_file('jobs/job_research_programs.json')
         elif 'News' in option:
-            st.write('Loading News')
+            st.write('Loading Template')
             j.load_json_file('jobs/job_research_news_today.json')
+        elif 'Profile' in option:
+            st.write('Loading Template')
+            j.load_json_file('jobs/job_company_profile.json')            
         else:
-            st.write('Loading Default Program')
+            st.write('Loading Default Template')
             j.load_default_Job()
 
 
