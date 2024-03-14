@@ -1,3 +1,6 @@
+![Alt text](https://github.com/Danlugo/littleaibites/blob/main/images/side_bar_bot_01.png "Logo")
+
+
 # LittleAIBites
 
 A custom build chatbot UI that provides 1. chat, 2. websearch chat, 3. crewai chat with various jobs and a 4. pdf chat reader capabilities for personal usage built using Streamlit, Langchain and crewai. It uses various LLMs like OpenAI, Claude3, and Ollama when running locally. The web demo instance uses OpenAI only.
