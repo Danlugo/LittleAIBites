@@ -2,7 +2,13 @@
 
 # LittleAIBites
 
-A custom build chatbot UI that provides 1. chat, 2. websearch chat, 3. crewai chat with various jobs and a 4. pdf chat reader capabilities for personal usage built using Streamlit, Langchain and crewai. It uses various LLMs like OpenAI, Claude3, and Ollama when running locally. The web demo instance uses OpenAI only.
+A custom build chatbot UI that consolidates small AI functions. It provides 
+1. General ChatBot,
+2. SearchWeb ChatBot,
+3. Multi Agent Bot
+4. Pdf Reader ChatBot
+
+It provides capabilities for personal usage built using Streamlit, Langchain and crewai. It uses various LLMs like OpenAI, Claude3, and Ollama when running locally. The web demo instance uses OpenAI only.
 
 The app is combines already created code into a custom UI that provides little examples of AI chatbot functionality. It is a showcase to learn about AI and the tools to better understand the limitations and use cases.
 
